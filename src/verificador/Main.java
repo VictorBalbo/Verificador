@@ -17,7 +17,7 @@ public class Main {
         while(true){
             System.out.print("Digite a palavra: ");
             word = in.nextLine();
-            if(word.equals("")){
+            if(word.equals("-1")){
                 return;
             }
             if(verificador.checkWord(word)){
