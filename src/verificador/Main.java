@@ -1,5 +1,6 @@
 package verificador;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,15 +15,16 @@ public class Main {
         System.out.println("E o estado inicial é A");
         System.out.print("Digite a Gramatica Regular: ");
         verificador.readGrammar(in.nextLine());
-        while(true){
-            System.out.print("Digite a palavra: ");
-            word = in.nextLine();
-            if(word.equals("-1")){
+        while (true) {
+            try {
+                System.out.print("Digite a palavra: ");
+                word = in.nextLine();
+            } catch (NoSuchElementException e) {
                 return;
             }
-            if(verificador.checkWord(word)){
+            if (verificador.checkWord(word)) {
                 System.out.println("Sim");
-            }else{
+            } else {
                 System.out.println("Não");
             }
         }

@@ -39,6 +39,7 @@ public class Verificador {
     }
 
     public void setRules(String regras) throws Exception {
+        regras = regras.replaceAll("\\{|\\}", ""); // Tira {}
         for (String regra : regras.split(",")) {
             String[] r = regra.split("->");
             if (r.length != 2) {
@@ -48,7 +49,7 @@ public class Verificador {
             if (estadoAtual == null) {
                 throw new Exception("Regra mal formatada - Estado invalido:" + r[0]);
             }
-            try{
+            try {
                 for (String transicao : r[1].split("\\|")) {
                     State estadoDestino;
                     if (transicao.substring(1).equals("")) {
@@ -61,7 +62,7 @@ public class Verificador {
                     }
                     this.rules.add(new Rule(transicao.substring(0, 1), estadoAtual, estadoDestino));
                 }
-            }catch(RuntimeException e){
+            } catch (RuntimeException e) {
                 throw new Exception("Regra mal formatada");
             }
         }
@@ -112,13 +113,13 @@ public class Verificador {
         State estadoAtual = e;
         if (palavra.isEmpty() && estadoAtual.getIsFinal()) { // terminou a palavra
             return true;
-        }else if(palavra.isEmpty()){
+        } else if (palavra.isEmpty()) {
             return false;
         }
         ArrayList<Rule> possiveisRegras = getPossibleRules(estadoAtual, String.valueOf(palavra.charAt(0)));
         for (Rule r : possiveisRegras) {
             System.out.println(r.toString());
-            if(checkWord(palavra.substring(1), r.getDestiny())){
+            if (checkWord(palavra.substring(1), r.getDestiny())) {
                 return true;
             }
         }
