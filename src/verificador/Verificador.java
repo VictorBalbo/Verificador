@@ -61,7 +61,7 @@ public class Verificador {
                     }
                     this.rules.add(new Rule(transicao.substring(0, 1), estadoAtual, estadoDestino));
                 }
-            }catch(Exception e){
+            }catch(RuntimeException e){
                 throw new Exception("Regra mal formatada");
             }
         }
