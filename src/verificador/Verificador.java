@@ -36,6 +36,17 @@ public class Verificador {
     public void setAlphabet(String alphabet) {
         alphabet = alphabet.replaceAll("\\{|\\}", ""); // Tira {}
         this.alphabet.addAll(Arrays.asList(alphabet.split(",")));
+        this.alphabet.add("@");
+        this.alphabet.add("λ");
+    }
+
+    public boolean checkLetter(String letter) {
+        for (String l : alphabet) {
+            if (l.equals(letter)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setRules(String regras) throws Exception {
@@ -52,6 +63,10 @@ public class Verificador {
             try {
                 for (String transicao : r[1].split("\\|")) {
                     State estadoDestino;
+                    String letter = transicao.substring(0,1);
+                    if(!checkLetter(letter)){
+                        throw new Exception("Regra mal formata - Caracter invalido: " + transicao.substring(0,1));
+                    }
                     if (transicao.substring(1).equals("")) {
                         estadoDestino = getStateByName("Z");
                     } else {
@@ -60,7 +75,7 @@ public class Verificador {
                             throw new Exception("Regra mal formatada - Estado invalido:" + transicao.substring(1));
                         }
                     }
-                    this.rules.add(new Rule(transicao.substring(0, 1), estadoAtual, estadoDestino));
+                    this.rules.add(new Rule(letter, estadoAtual, estadoDestino));
                 }
             } catch (RuntimeException e) {
                 throw new Exception("Regra mal formatada");
