@@ -109,8 +109,7 @@ public class Verificador {
         return checkWord(palavra, inicial);
     }
 
-    boolean checkWord(String palavra, State e) {
-        State estadoAtual = e;
+    boolean checkWord(String palavra, State estadoAtual) {
         if (palavra.isEmpty() && estadoAtual.getIsFinal()) { // terminou a palavra
             return true;
         } else if (palavra.isEmpty()) {
@@ -118,7 +117,6 @@ public class Verificador {
         }
         ArrayList<Rule> possiveisRegras = getPossibleRules(estadoAtual, String.valueOf(palavra.charAt(0)));
         for (Rule r : possiveisRegras) {
-            System.out.println(r.toString());
             if (checkWord(palavra.substring(1), r.getDestiny())) {
                 return true;
             }
