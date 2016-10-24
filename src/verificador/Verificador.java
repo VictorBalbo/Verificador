@@ -103,7 +103,11 @@ public class Verificador {
 
     // ({A,B,C}; {a,b,c}; A -> aB | bA | cA | λ, B -> aB | bC | cA | λ, C -> aB | bA | λ; A)
     public void readGrammar(String gramatica) throws Exception {
-        gramatica = gramatica.replaceAll("\\(|\\)| ", ""); // Tira parentesis e espaço
+        gramatica = gramatica.replaceAll("\\(|\\)|\\s+", ""); // Tira parentesis e espaços
+        if(gramatica.startsWith("G=")){ // Tira o G =  do inicio
+            gramatica = gramatica.replace("G=","");
+        }
+        gramatica = gramatica.replaceAll("\\},", "\\};"); // Substitui a , por ;
         String[] g = gramatica.split(";"); // Quebra partes da gramatica
         if (g.length != 4) {
             throw new Exception("Gramatica mal formatada");
