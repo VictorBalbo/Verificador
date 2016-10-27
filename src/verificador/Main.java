@@ -1,5 +1,7 @@
 package verificador;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -8,13 +10,20 @@ public class Main {
         Scanner in = new Scanner(System.in);
         Verificador verificador = new Verificador();
         String word;
-        System.out.println("Exemplo de Gramatica: ({A,B}; {0,1}; {A -> 0A | 0 | 1B | λ, B -> 1B | λ}; A)");
-        System.out.println("Essa gramatica reconhece os estados A,B");
-        System.out.println("O alfabeto 0, 1;");
-        System.out.println("A expressão 0*1*");
-        System.out.println("E o estado inicial é A");
-        System.out.print("Digite a Gramatica Regular: ");
-        verificador.readGrammar(in.nextLine());
+        String g = "";
+        BufferedReader bufferedReader;
+        if(args.length > 0){
+            bufferedReader = new BufferedReader(new FileReader(args[0]));
+        }else{
+            System.out.print("Não ha parametros, digite o nome do arquivo: ");
+            bufferedReader = new BufferedReader(new FileReader(in.nextLine()));
+        }
+        String line;
+        while((line = bufferedReader.readLine()) != null){
+            g += line;
+        }
+        verificador.readGrammar(g);
+        System.out.println("Gramatica: " + g.replaceAll("\\s+"," "));
         while (true) {
             try {
                 System.out.print("Digite a palavra: ");

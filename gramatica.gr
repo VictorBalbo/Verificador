@@ -1,0 +1,9 @@
+Gram = ({AAA, BBB}, {0, 1}, 
+{
+	AAA -> 0AAA, 
+	AAA -> 1BBB, 
+	AAA -> 0, 
+	AAA -> λ,
+	BBB -> 1BBB,
+	BBB -> λ},
+AAA)
