@@ -18,7 +18,11 @@ public class Main {
         while (true) {
             try {
                 System.out.print("Digite a palavra: ");
-                word = in.nextLine().replaceAll("\\s+|λ", "");
+                word = in.nextLine();
+                if(word.length() == 0){
+                    return;
+                }
+                word = word.replaceAll("\\s+|λ|@", "");
             } catch (NoSuchElementException e) {
                 return;
             }
