@@ -31,7 +31,7 @@ public class Main {
                 if(word.length() == 0){
                     return;
                 }
-                word = word.replaceAll("\\s+|λ|\\?", "");
+                word = word.replaceAll("\\s+|λ|#", "");
             } catch (NoSuchElementException e) {
                 return;
             }

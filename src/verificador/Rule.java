@@ -9,7 +9,7 @@ public class Rule {
         this.element = element;
         this.state = state;
         this.destiny = destiny;
-        if(element.equals("?") || element.equals("λ")){
+        if(element.equals("#") || element.equals("λ")){
             this.state.setIsFinal(true);
         }
     }

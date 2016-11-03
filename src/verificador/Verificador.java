@@ -36,7 +36,7 @@ public class Verificador {
     public void setAlphabet(String alphabet) {
         alphabet = alphabet.replaceAll("\\{|\\}", ""); // Tira {}
         this.alphabet.addAll(Arrays.asList(alphabet.split(",")));
-        this.alphabet.add("?");
+        this.alphabet.add("#");
         this.alphabet.add("λ");
     }
 
