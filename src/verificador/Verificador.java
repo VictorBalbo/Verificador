@@ -21,7 +21,7 @@ public class Verificador {
         for (String e : states.split(",")) {
             this.states.add(new State(e));
         }
-        this.states.add(new State("Z", true));
+        this.states.add(new State("DEFAULT", true));
     }
 
     public State getStateByName(String name) {
@@ -68,7 +68,7 @@ public class Verificador {
                         throw new Exception("Regra mal formata - Caracter invalido: " + transicao.substring(0,1));
                     }
                     if (transicao.substring(1).equals("")) {
-                        estadoDestino = getStateByName("Z");
+                        estadoDestino = getStateByName("DEFAULT");
                     } else {
                         estadoDestino = getStateByName(transicao.substring(1));
                         if (estadoDestino == null) {

@@ -31,7 +31,7 @@ public class State {
 
     @Override
     public String toString(){
-        if(name.equals("Z")){
+        if(name.equals("DEFAULT")){
             return "";
         }
         return name;
